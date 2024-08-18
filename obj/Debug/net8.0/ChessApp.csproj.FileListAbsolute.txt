@@ -1,0 +1,14 @@
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\ChessApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\ChessApp.AssemblyInfoInputs.cache
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\ChessApp.AssemblyInfo.cs
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\ChessApp.csproj.CoreCompileInputs.cache
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\bin\Debug\net8.0\ChessApp.exe
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\bin\Debug\net8.0\ChessApp.deps.json
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\bin\Debug\net8.0\ChessApp.runtimeconfig.json
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\bin\Debug\net8.0\ChessApp.dll
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\bin\Debug\net8.0\ChessApp.pdb
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\ChessApp.dll
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\refint\ChessApp.dll
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\ChessApp.pdb
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\ChessApp.genruntimeconfig.cache
+C:\Users\Henrique\Desktop\c#_chess\ChessApp\obj\Debug\net8.0\ref\ChessApp.dll
