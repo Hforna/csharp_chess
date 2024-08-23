@@ -6,35 +6,60 @@ using System.IO;
 
 enum Column
 {
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H"
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H
+
+
+
 }
 
 class Piece
 {
     public int currColumn;
     public int currRow;
-    public bool ValidPosition(int ToColumn, int ToRow, int CurrColumn, int CurrRow, Piece[,] table)
+    public virtual bool ValidPosition(int ToColumn, int ToRow, Piece[,] table)
     {
         return false;
     }
 }
 
+class Queen : Piece
+{
+    public override bool ValidPosition(int ToColumn, int ToRow, Piece[,] table)
+    {
+        int rowDiff = Math.Abs(currRow - ToRow);
+        int columnDiff = Math.Abs(currColumn - ToColumn);
+        bool diffColRow = currColumn != ToColumn && currRow != ToRow;
+
+        if (table[ToRow, ToColumn] != null && diffColRow)
+        {
+            if (rowDiff == 1 && columnDiff == 1)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public override string ToString()
+    {
+        return "Q";
+    }
+}
+
 class King : Piece
 {
-    public int currColumn;
-    public int currRow;
 
-    public bool ValidPosition(int ToColumn, int ToRow, int CurrColumn, int CurrRow, Piece[,] table)
+    public override bool ValidPosition(int ToColumn, int ToRow, Piece[,] table)
     {
-        int rowDiff = Math.Abs(ToRow - CurrRow);
-        int columnDiff = Math.Abs(ToColumn - CurrColumn);
+        int rowDiff = Math.Abs(ToRow - currRow);
+        int columnDiff = Math.Abs(ToColumn - currColumn);
         bool veriP = rowDiff <= 1 && columnDiff <= 1;
         if (table[ToRow, ToColumn] == null && veriP)
         {
@@ -56,10 +81,9 @@ class Board
 
     public void MovePiece(Piece piece, char ToColumn, int ToRow)
     {
-        while (piece.ValidPosition(ToColumn, ToRow, piece.currColumn, piece.currRow, Table) == false)
+        while (piece.ValidPosition(ToColumn, ToRow, Table) == false)
         {
-            Console.WriteLine("Invalid move");
-            if (piece.ValidPosition(ToColumn, ToRow, piece.currColumn, piece.currRow, Table))
+            if (piece.ValidPosition(ToColumn, ToRow, Table))
             {
                 Table[ToRow, ToColumn] = piece;
                 piece.currColumn = ToColumn;
