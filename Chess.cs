@@ -21,8 +21,10 @@ enum Column
 
 class Piece
 {
-    public int currColumn;
+    public char currColumn;
     public int currRow;
+    public bool alive;
+    public bool killAnyPiece = false;
     public virtual bool ValidPosition(int ToColumn, int ToRow, Piece[,] table)
     {
         return false;
@@ -35,14 +37,16 @@ class Queen : Piece
     {
         int rowDiff = Math.Abs(currRow - ToRow);
         int columnDiff = Math.Abs(currColumn - ToColumn);
-        bool diffColRow = currColumn != ToColumn && currRow != ToRow;
 
-        if (table[ToRow, ToColumn] != null && diffColRow)
+        if (rowDiff == columnDiff || currRow == ToRow || currColumn == ToColumn)
         {
-            if (rowDiff == 1 && columnDiff == 1)
+            for (int i = 1; i < Math.Max(rowDiff, columnDiff); i++)
             {
-                return true;
+                int checkRow = currRow + i * Math.Sign(ToRow - currRow);
+                int checkCol = currColumn + i * Math.Sign(ToColumn - currColumn);
+                if (table[checkRow, checkCol] != null) return false;
             }
+            return true;
         }
         return false;
     }
@@ -73,6 +77,35 @@ class King : Piece
         return "K";
     }
 
+}
+
+class Pawn : Piece
+{
+    public override bool ValidPosition(int ToColumn, int ToRow, Piece[,] table)
+    {
+        int rowDiff = ToRow - ToColumn;
+        int columnDiff = ToColumn - currColumn;
+        if(rowDiff == 0 && columnDiff == -1)
+        {
+            if (table[ToRow, ToColumn] == null)
+            {
+                return true;
+            }
+        } else if(columnDiff == -1 && rowDiff != 0)
+        {
+            if (table[ToRow, ToColumn] != null)
+            {
+                killAnyPiece = true;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public override string ToString()
+    {
+        return "P";
+    }
 }
 
 class Board
